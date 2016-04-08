@@ -1,3 +1,5 @@
-ImageSort/bin
-ImageSort/obj
+CSharp/ImageSort/bin
+CSharp/ImageSort/obj
+CSharp/Sorter/bin
+CSharp/Sorter/obj
 !*.dll

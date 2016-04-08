@@ -1,5 +1,0 @@
-C:\MEGA\My Documents\Programming\C#\ImageSort\Sorter\bin\Release\Sorter.dll
-C:\MEGA\My Documents\Programming\C#\ImageSort\Sorter\bin\Release\Sorter.pdb
-C:\MEGA\My Documents\Programming\C#\ImageSort\Sorter\obj\Release\Sorter.csprojResolveAssemblyReference.cache
-C:\MEGA\My Documents\Programming\C#\ImageSort\Sorter\obj\Release\Sorter.dll
-C:\MEGA\My Documents\Programming\C#\ImageSort\Sorter\obj\Release\Sorter.pdb
