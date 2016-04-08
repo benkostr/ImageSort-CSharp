@@ -1,0 +1,5 @@
+C:\MEGA\My Documents\Programming\C#\ImageSort\Sorter\bin\Debug\Sorter.dll
+C:\MEGA\My Documents\Programming\C#\ImageSort\Sorter\bin\Debug\Sorter.pdb
+C:\MEGA\My Documents\Programming\C#\ImageSort\Sorter\obj\Debug\Sorter.csprojResolveAssemblyReference.cache
+C:\MEGA\My Documents\Programming\C#\ImageSort\Sorter\obj\Debug\Sorter.dll
+C:\MEGA\My Documents\Programming\C#\ImageSort\Sorter\obj\Debug\Sorter.pdb
