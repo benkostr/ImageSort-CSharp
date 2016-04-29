@@ -22,6 +22,8 @@ namespace ImageSort
     /// </summary>
     public partial class MainWindow : Window
     {
+        ProgressWindow progressWnd;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -42,7 +44,9 @@ namespace ImageSort
             }
             else
             {
-                Sorter.Sorter sorter = new Sorter
+                progressWnd = new ProgressWindow();
+                progressWnd.Owner = this;
+                progressWnd.sorter = new Sorter
                     .Sorter(this.textBox_sourceDir.Text, this.textBox_targetDir.Text)
                 {
                     sortByYear = this.checkBox_year.IsChecked ?? true,
@@ -55,8 +59,7 @@ namespace ImageSort
                     separateNonExif = this.checkBox_separateNonExif.IsChecked ?? true,
                     move = this.radioButton_move.IsChecked ?? false
                 };
-
-                sorter.Sort();
+                progressWnd.ShowDialog();
             }
         }
 
