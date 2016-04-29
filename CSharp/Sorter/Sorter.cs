@@ -121,6 +121,7 @@ namespace Sorter
                     File.Move(sourceFile, destFile);
                 }
                 else { File.Copy(sourceFile, destFile, true); }
+                GC.Collect();
             }
         }
 
