@@ -161,10 +161,6 @@ xcopy /d /r /e /i /y "$(ProjectDir)resource" "$(OutDir)resource"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <Text Include="ReadMe.txt" />
-    <Text Include="resource\dummy.txt" />
-  </ItemGroup>
-  <ItemGroup>
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
