@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:ImageSort"
         mc:Ignorable="d"
         Title="ImageSort" Height="277" Width="459"
-        ResizeMode="NoResize">
+        ResizeMode="CanMinimize">
     <Grid>
         <Button x:Name="button_start" Content="Start" HorizontalAlignment="Right" Margin="0,0,30,13" VerticalAlignment="Bottom" Width="75" Click="button_start_Click"/>
         <StackPanel HorizontalAlignment="Right" Margin="10" VerticalAlignment="Top">
