@@ -151,8 +151,8 @@ namespace Sorter
                     else if (separateNonExif)
                     {
                         targetPath = Path.Combine(targetPath, "NonEXIF");
-                        dt = File.GetLastWriteTime(sourceFile);
                     }
+                    dt = File.GetLastWriteTime(sourceFile);
                 }
 
                 if (sortByYear)
