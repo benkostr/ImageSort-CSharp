@@ -49,7 +49,6 @@
             </StackPanel>
             <Button x:Name="button_chooseSourceDir" Grid.Column="1" Grid.Row="1" Content="..." HorizontalAlignment="Left" VerticalAlignment="Top" Height="23" Width="17" Click="button_chooseSourceDir_Click"/>
             <Button x:Name="button_chooseTargetDir" Grid.Column="1" Grid.Row="3" Content="..." VerticalAlignment="Center" Height="23" HorizontalAlignment="Right" Width="17" Click="button_chooseTargetDir_Click"/>
-
         </Grid>
     </Grid>
 </Window>

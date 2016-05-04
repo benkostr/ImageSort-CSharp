@@ -44,22 +44,22 @@ namespace ImageSort
             }
             else
             {
-                progressWnd = new ProgressWindow();
-                progressWnd.Owner = this;
+                progressWnd        = new ProgressWindow();
+                progressWnd.Owner  = this;
                 progressWnd.sorter = new Sorter
                     .Sorter(this.textBox_sourceDir.Text, this.textBox_targetDir.Text)
                 {
-                    sortByYear = this.checkBox_year.IsChecked ?? true,
-                    sortByMonth = this.checkBox_month.IsChecked ?? true,
-                    sortByDay = this.checkBox_day.IsChecked ?? false,
-                    sortByHour = this.checkBox_hour.IsChecked ?? false,
-                    sortByMinute = this.checkBox_minute.IsChecked ?? false,
-                    sortBySecond = this.checkBox_second.IsChecked ?? false,
-                    sortNonExif = this.checkBox_sortNonExif.IsChecked ?? true,
+                    sortByYear      = this.checkBox_year.IsChecked ?? true,
+                    sortByMonth     = this.checkBox_month.IsChecked ?? true,
+                    sortByDay       = this.checkBox_day.IsChecked ?? false,
+                    sortByHour      = this.checkBox_hour.IsChecked ?? false,
+                    sortByMinute    = this.checkBox_minute.IsChecked ?? false,
+                    sortBySecond    = this.checkBox_second.IsChecked ?? false,
+                    sortNonExif     = this.checkBox_sortNonExif.IsChecked ?? true,
                     separateNonExif = this.checkBox_separateNonExif.IsChecked ?? true,
-                    move = this.radioButton_move.IsChecked ?? false
+                    move            = this.radioButton_move.IsChecked ?? false
                 };
-                progressWnd.ShowDialog();
+                progressWnd.StartSorter();
             }
         }
 
@@ -88,16 +88,16 @@ namespace ImageSort
             // Enable/disable hour, minute, second checkboxes
             if (checkBox_hour.IsEnabled == false)
             {
-                checkBox_hour.IsEnabled = true;
+                checkBox_hour.IsEnabled   = true;
                 checkBox_minute.IsEnabled = true;
                 checkBox_second.IsEnabled = true;
             }
             else if (checkBox_hour.IsEnabled == true)
             {
-                checkBox_hour.IsChecked = false;
+                checkBox_hour.IsChecked   = false;
                 checkBox_minute.IsChecked = false;
                 checkBox_second.IsChecked = false;
-                checkBox_hour.IsEnabled = false;
+                checkBox_hour.IsEnabled   = false;
                 checkBox_minute.IsEnabled = false;
                 checkBox_second.IsEnabled = false;
             }
