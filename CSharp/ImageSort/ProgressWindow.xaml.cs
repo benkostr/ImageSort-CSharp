@@ -54,11 +54,11 @@ namespace ImageSort
                 {
                     if (this.backgroundWorker.CancellationPending)
                     {
-                        args.Cancel            = true;
+                        args.Cancel = true;
                         this.sorter.ABORT_FLAG = true;
                     }
                     else
-                        this.backgroundWorker.ReportProgress((int)(this.sorter.PROGRESS*100));
+                        this.backgroundWorker.ReportProgress((int)(this.sorter.PROGRESS * 100));
                     Thread.Sleep(500);
                 }
             };
@@ -81,7 +81,10 @@ namespace ImageSort
                 timer.Stop();
                 if (args.Error != null)
                 {
-                    MessageBox.Show("Error: " + args.Error.ToString());
+                    if (args.Error.Message == "No files found")
+                        MessageBox.Show(args.Error.Message, "Error");
+                    else
+                        MessageBox.Show(args.Error.ToString(), "Error");
                     this.sorter.ABORT_FLAG = false;
                     this.Close();
                 }
@@ -120,7 +123,7 @@ namespace ImageSort
 
         private void SafeClose()
         {
-            if (this.button_cancel.Content == "Close")
+            if ((string)this.button_cancel.Content == "Close")
             {
                 this.button_cancel.Content = "Cancel";
                 this.label_timer.Content   = "Time Remaining: --";

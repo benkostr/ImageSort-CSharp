@@ -31,6 +31,7 @@ namespace Sorter
         private List<Thread> threads;
         private int numThreads, numFiles;
         private IEnumerable<string> files;
+        // private Mutex mut = new Mutex(); // mutex for moving files
 
         public Sorter(string sourcePath, string outDir)
         {
@@ -61,7 +62,9 @@ namespace Sorter
                     file.ToLower().EndsWith("dib")
                     )
                 .ToList();
-            numFiles         = files.Count();
+            numFiles = files.Count();
+            if (numFiles == 0)
+                throw new InvalidOperationException("No files found");
             int numProcs     = Environment.ProcessorCount;
             numThreads       = (numProcs <= numFiles) ? numProcs : numFiles;
             partitionedFiles = PartitionList(files.ToList<string>(), numThreads);
@@ -75,6 +78,10 @@ namespace Sorter
             {
                 threads[i].Start(partitionedFiles[i]);
             }
+            // Need to prepare for garbage collection or else we will be locked
+            // out of moving files.
+            files = null;
+            partitionedFiles = null;
             Thread manager = new Thread(new ThreadStart(JoinThreads));
             manager.Start();
         }
@@ -195,18 +202,20 @@ namespace Sorter
                     targetPath = Path.Combine(targetPath, dt.Second.ToString());
                 Directory.CreateDirectory(targetPath);
                 destFile = Path.Combine(targetPath, fileName);
-
+                // Force GC to reduce memory usage and allow moving files.
+                GC.Collect(GC.MaxGeneration, GCCollectionMode.Forced);
+                GC.WaitForPendingFinalizers();
                 if (move)
                 {
+                    //mut.WaitOne();
                     if (File.Exists(destFile))
                         File.Delete(destFile);
                     File.Move(sourceFile, destFile);
+                    //mut.ReleaseMutex();
                 }
                 else
                     File.Copy(sourceFile, destFile, true);
                 PROGRESS += 1.0f / numFiles;
-                GC.Collect(GC.MaxGeneration, GCCollectionMode.Forced);
-                GC.WaitForPendingFinalizers();
             }
         }
     }

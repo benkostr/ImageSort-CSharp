@@ -34,12 +34,12 @@ namespace ImageSort
             // Read settings, initialize Sorter, Sort
             if (!Directory.Exists(this.textBox_sourceDir.Text))
             {
-                System.Windows.MessageBox.Show(this, "Error: Cannot find source path:\n" + this.textBox_sourceDir.Text);
+                System.Windows.MessageBox.Show(this, "Cannot find source path:\n" + this.textBox_sourceDir.Text, "Error");
                 return;
             }
             else if (!Directory.Exists(this.textBox_targetDir.Text))
             {
-                System.Windows.MessageBox.Show(this, "Error: Cannot find target path:\n" + this.textBox_targetDir.Text);
+                System.Windows.MessageBox.Show(this, "Cannot find target path:\n" + this.textBox_targetDir.Text, "Error");
                 return;
             }
             else
