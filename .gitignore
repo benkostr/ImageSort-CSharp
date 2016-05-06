@@ -6,3 +6,4 @@ CSharp/Sorter/bin
 CSharp/Sorter/obj
 *.opendb
 !*.dll
+releases/
