@@ -27,10 +27,8 @@ namespace Sorter
         public bool ABORT_FLAG = false;
         public bool completed  = false;
 
-        private List<string>[] partitionedFiles;
         private List<Thread> threads;
         private int numThreads, numFiles;
-        private IEnumerable<string> files;
         // private Mutex mut = new Mutex(); // mutex for moving files
 
         public Sorter(string sourcePath, string outDir)
@@ -40,7 +38,7 @@ namespace Sorter
             this.separateNonExif  = true;
             this.sortByYear       = true;
             this.sortByMonth      = true;
-            this.sortByDay        = true;
+            this.sortByDay        = false;
             this.sortByHour       = false;
             this.sortByMinute     = false;
             this.sortBySecond     = false;
@@ -51,6 +49,8 @@ namespace Sorter
 
         public void Start()
         {
+            IEnumerable<string> files;
+            List<string>[] partitionedFiles;
             completed = false;
             files = Directory
                 .EnumerateFiles(sourcePath, "*", SearchOption.AllDirectories)
@@ -153,17 +153,14 @@ namespace Sorter
         {
             DateTime dt;
             DateTime defaultDT = default(DateTime);
-            string fileName, sourceFile;
             string month, day;
             string targetPath, destFile;
             foreach (string file in (List<string>)imageFiles)
             {
                 if (ABORT_FLAG)
                     break;
-                fileName   = file.Substring(sourcePath.Length + 1);
-                sourceFile = Path.Combine(sourcePath, fileName);
                 targetPath = outDir;
-                dt         = DateTaken(sourceFile) ?? defaultDT;
+                dt         = DateTaken(file) ?? defaultDT;
                 if (dt.Equals(defaultDT))
                 {
                     if (!sortNonExif)
@@ -173,7 +170,7 @@ namespace Sorter
                     }
                     else if (separateNonExif)
                         targetPath = Path.Combine(targetPath, "NonEXIF");
-                    dt = File.GetLastWriteTime(sourceFile);
+                    dt = File.GetLastWriteTime(file);
                 }
 
                 if (sortByYear)
@@ -201,7 +198,7 @@ namespace Sorter
                 if (sortBySecond)
                     targetPath = Path.Combine(targetPath, dt.Second.ToString());
                 Directory.CreateDirectory(targetPath);
-                destFile = Path.Combine(targetPath, fileName);
+                destFile = Path.Combine(targetPath, Path.GetFileName(file));
                 // Force GC to reduce memory usage and allow moving files.
                 GC.Collect(GC.MaxGeneration, GCCollectionMode.Forced);
                 GC.WaitForPendingFinalizers();
@@ -210,11 +207,11 @@ namespace Sorter
                     //mut.WaitOne();
                     if (File.Exists(destFile))
                         File.Delete(destFile);
-                    File.Move(sourceFile, destFile);
+                    File.Move(file, destFile);
                     //mut.ReleaseMutex();
                 }
                 else
-                    File.Copy(sourceFile, destFile, true);
+                    File.Copy(file, destFile, true);
                 PROGRESS += 1.0f / numFiles;
             }
         }
