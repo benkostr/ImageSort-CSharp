@@ -1,9 +1,9 @@
-C++/Build
-C++/ipch
-CSharp/ImageSort/bin
-CSharp/ImageSort/obj
-CSharp/Sorter/bin
-CSharp/Sorter/obj
+ImageSort/bin
+ImageSort/obj
+Sorter/bin
+Sorter/obj
 *.opendb
 !*.dll
+.vs
+*.user
 releases/
