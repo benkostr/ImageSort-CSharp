@@ -4,7 +4,9 @@ Sort images by date with EXIF data
 There is a (quicker) version in C++ with Qt5 that is also being developed for Linux: [ImageSort-Cpp](https://github.com/benkostr/ImageSort-Cpp).
 
 ### Features
-- Sorts images by date taken
+- Sorts images into subdirectories based on date taken
+- Options for month, day, hour, minute, and second
+- Can copy or move files
 - Optionally sorts non-EXIF file formats by date modified into a separate folder
 - Written in C# with WPF
 - 64bit
